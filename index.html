@@ -1,9 +1,9 @@
-<index.html>
+<index.htmll>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SHRAYS GAMING | Global Lifestyle Store</title>
+    <title>TAVEX RAGE | India's Premium Store</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -20,11 +20,11 @@
             overflow-x: hidden;
         }
 
-        /* --- ATTRACTIVE BACKGROUND (Stars + Aurora) --- */
+        /* --- BACKGROUND (Carina Nebula) --- */
         .bg-container {
             position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
             z-index: -1; overflow: hidden;
-            background: radial-gradient(circle at bottom, #1a1a1a 0%, #000 100%);
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://cdn.britannica.com/61/234061-050-6D985ED2/Carina-Nebula-Cosmic-Cliffs-NGC-3324-James-Webb-Space-Telescope-NIRCam.jpg') no-repeat center center/cover;
         }
         .stars {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
@@ -66,7 +66,6 @@
             position: relative;
         }
         
-        /* Password Eye Container */
         .password-container { position: relative; width: 100%; }
         .password-container i {
             position: absolute; right: 15px; top: 15px;
@@ -104,9 +103,8 @@
         }
         .brand-name { font-family: 'Cinzel', serif; font-size: 1.6rem; letter-spacing: 2px; color: #fff; margin: 0; white-space: nowrap; }
         
-        /* SEARCH BAR */
         .search-container {
-            flex-grow: 1; max-width: 600px; position: relative;
+            flex-grow: 1; max-width: 500px; position: relative;
             display: flex;
         }
         .search-input {
@@ -139,7 +137,7 @@
 
         /* --- SLIDING TOAST NOTIFICATION --- */
         #toast-notification {
-            position: fixed; top: 100px; right: -300px; /* Hidden initially */
+            position: fixed; top: 100px; right: -300px; 
             background: #111; border-left: 4px solid #d4af37;
             padding: 15px 20px; color: #fff; border-radius: 4px;
             box-shadow: -5px 5px 20px rgba(0,0,0,0.5); z-index: 4000;
@@ -200,15 +198,47 @@
         .admin-input { width: 100%; background: #222; border: 1px solid #444; color: #fff; padding: 8px; margin-bottom: 10px; }
         .admin-btn { background: #d4af37; color: #000; border: none; padding: 10px; width: 100%; font-weight: bold; cursor: pointer; }
 
-        /* --- CART SIDEBAR --- */
-        .cart-sidebar { position: fixed; top: 0; right: -400px; width: 400px; height: 100vh; background: #0f0f0f; border-left: 1px solid #333; z-index: 1000; padding: 20px; transition: right 0.4s ease; display: flex; flex-direction: column; }
-        .cart-sidebar.open { right: 0; }
-        .cart-items { flex-grow: 1; overflow-y: auto; }
-        .cart-item { display: flex; gap: 15px; margin-bottom: 15px; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 6px; border: 1px solid #222; }
-        .cart-item img { width: 60px; height: 60px; object-fit: cover; border-radius: 4px; }
-        .checkout-btn { width: 100%; padding: 15px; background: #222; color: #fff; border: 1px solid #444; font-weight: bold; cursor: pointer; margin-bottom: 10px; }
-        .buy-now-btn { width: 100%; padding: 15px; background: #fff; color: #000; border: none; font-weight: bold; cursor: pointer; font-family: 'Cinzel', serif; letter-spacing: 2px; }
-        .buy-now-btn:hover { background: #d4af37; }
+        /* --- CENTERED CART (Updated) --- */
+        .cart-sidebar { 
+            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.9);
+            width: 500px; max-width: 90%; height: auto; max-height: 85vh;
+            background: #1a1a1a; border: 1px solid #d4af37; z-index: 5000; 
+            display: none; flex-direction: column; border-radius: 12px;
+            box-shadow: 0 0 0 1000px rgba(0,0,0,0.85); /* Backlight Overlay Effect */
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .cart-sidebar.open { display: flex; transform: translate(-50%, -50%) scale(1); }
+        
+        .cart-header {
+            padding: 20px; background: #111; border-bottom: 1px solid #333; border-radius: 12px 12px 0 0;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .cart-items { flex-grow: 1; overflow-y: auto; padding: 15px; }
+        
+        .cart-item { 
+            display: flex; gap: 15px; margin-bottom: 15px; 
+            background: #252525; padding: 15px; border-radius: 8px; 
+            border: 1px solid #333; box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .cart-item img { width: 80px; height: 80px; object-fit: cover; border-radius: 4px; background: #000; }
+        .cart-item-details { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; }
+        .cart-title { color: #fff; font-size: 0.95rem; font-weight: bold; margin: 0 0 5px 0; line-height: 1.2; }
+        .cart-price { color: #d4af37; font-size: 1.1rem; font-weight: bold; margin: 0; }
+        .cart-remove { 
+            color: #ff4d4d; font-size: 0.8rem; cursor: pointer; margin-top: 8px; 
+            text-decoration: underline; display: inline-block;
+        }
+        .cart-remove:hover { color: #ff0000; }
+
+        .cart-footer {
+            padding: 20px; background: #111; border-top: 1px solid #333; border-radius: 0 0 12px 12px;
+        }
+        .subtotal-area {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 15px; color: #fff; font-size: 1.2rem;
+        }
+        .checkout-btn { width: 100%; padding: 15px; background: #f0c14b; color: #111; border: 1px solid #a88734; font-weight: bold; cursor: pointer; border-radius: 4px; font-size: 1rem; }
+        .checkout-btn:hover { background: #ddb347; }
 
         /* --- CHECKOUT & MODALS --- */
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 3000; display: none; justify-content: center; align-items: center; }
@@ -219,8 +249,8 @@
         .checkout-content h2 { color: #d4af37; font-family: 'Cinzel', serif; margin-top: 0; border-bottom: 1px solid #333; padding-bottom: 15px; }
         .form-group { margin-bottom: 15px; }
         .form-group label { display: block; margin-bottom: 5px; color: #aaa; font-size: 0.9rem; }
-        .form-group input { width: 100%; padding: 12px; background: #1a1a1a; border: 1px solid #333; color: #fff; border-radius: 4px; font-family: 'Lato', sans-serif; }
-        .form-group input:focus { border-color: #d4af37; outline: none; }
+        .form-group input, .form-group select { width: 100%; padding: 12px; background: #1a1a1a; border: 1px solid #333; color: #fff; border-radius: 4px; font-family: 'Lato', sans-serif; }
+        .form-group input:focus, .form-group select:focus { border-color: #d4af37; outline: none; }
         .payment-option { display: flex; align-items: center; gap: 15px; padding: 15px; border: 1px solid #333; margin-bottom: 10px; border-radius: 4px; cursor: pointer; transition: 0.2s; background: #151515; }
         .payment-option:hover { background: #222; border-color: #d4af37; }
         .btn-confirm { width: 100%; padding: 15px; background: #d4af37; color: #000; border: none; font-weight: bold; font-family: 'Cinzel', serif; margin-top: 20px; cursor: pointer; font-size: 1.1rem; }
@@ -259,8 +289,8 @@
     </div>
 
     <div id="login-screen">
-        <h1 class="brand-name" style="margin-bottom: 10px; text-shadow: 0 0 10px #d4af37;">SHRAYS GAMING</h1>
-        <div style="margin-bottom: 40px; color:#aaa;">Global Lifestyle Store</div>
+        <h1 class="brand-name" style="margin-bottom: 10px; text-shadow: 0 0 10px #d4af37;">TAVEX RAGE</h1>
+        <div style="margin-bottom: 40px; color:#aaa;">India's Premium Gaming Store</div>
         
         <div class="login-box">
             <h3 style="color:#d4af37; font-family:'Cinzel',serif; margin-top:0; border-bottom: 1px solid #333; padding-bottom: 15px; font-size:1.1rem; line-height:1.5;">Welcome to our site,<br>feel free to order anything</h3>
@@ -287,7 +317,7 @@
         <header>
             <div class="header-top">
                 <div class="brand-container">
-                    <h1 class="brand-name">Shrays Gaming</h1>
+                    <h1 class="brand-name">Tavex Rage</h1>
                 </div>
                 
                 <div class="search-container">
@@ -295,9 +325,12 @@
                     <button class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </div>
 
-                <div class="cart-icon-container" onclick="toggleCart()">
-                    <i class="fa-solid fa-cart-shopping" id="cartIcon"></i>
-                    <div class="cart-badge" id="cart-count">0</div>
+                <div style="display:flex; align-items:center; gap:20px;">
+                    <button onclick="logout()" style="background:transparent; border:1px solid #d4af37; color:#d4af37; padding:5px 15px; cursor:pointer; font-weight:bold;">Logout</button>
+                    <div class="cart-icon-container" onclick="toggleCart()">
+                        <i class="fa-solid fa-cart-shopping" id="cartIcon"></i>
+                        <div class="cart-badge" id="cart-count">0</div>
+                    </div>
                 </div>
             </div>
             <nav class="main-nav">
@@ -335,7 +368,7 @@
                     <p>Terms of Service</p>
                 </div>
             </div>
-            <p style="margin-top:40px;">&copy; 2026 SHRAYS GAMING. All Rights Reserved.</p>
+            <p style="margin-top:40px;">&copy; 2026 TAVEX RAGE. All Rights Reserved.</p>
         </footer>
 
         <div id="checkoutModal" class="checkout-modal">
@@ -343,18 +376,38 @@
                 <h2>Secure Checkout</h2>
                 <h4 style="color:#d4af37; margin-bottom:15px; border-bottom:1px solid #333; padding-bottom:5px;">1. Shipping Details</h4>
                 <div class="form-group"><label>Full Name</label><input type="text" id="cName" placeholder="Enter your full name"></div>
-                <div class="form-group"><label>Phone Number</label><input type="text" id="cPhone" placeholder="10-digit mobile number"></div>
-                <div class="form-group"><label>Address Line 1</label><input type="text" id="cAddr1" placeholder="House No, Building, Apartment"></div>
-                <div class="form-group"><label>Address Line 2</label><input type="text" id="cAddr2" placeholder="Area, Street, Landmark"></div>
+                <div class="form-group"><label>Phone Number (+91)</label><input type="text" id="cPhone" placeholder="10-digit mobile number"></div>
+                <div class="form-group"><label>Address (Line 1)</label><input type="text" id="cAddr1" placeholder="House No, Street, Locality"></div>
+                
                 <div style="display:flex; gap:10px;">
-                    <div class="form-group" style="flex:1"><label>City</label><input type="text" id="cCity"></div>
+                    <div class="form-group" style="flex:1">
+                        <label>State</label>
+                        <select id="cState" onchange="updateCities()">
+                            <option value="">Select State</option>
+                            <option value="Andhra Pradesh">Andhra Pradesh</option><option value="Arunachal Pradesh">Arunachal Pradesh</option><option value="Assam">Assam</option><option value="Bihar">Bihar</option><option value="Chhattisgarh">Chhattisgarh</option><option value="Goa">Goa</option><option value="Gujarat">Gujarat</option><option value="Haryana">Haryana</option><option value="Himachal Pradesh">Himachal Pradesh</option><option value="Jharkhand">Jharkhand</option><option value="Karnataka">Karnataka</option><option value="Kerala">Kerala</option><option value="Madhya Pradesh">Madhya Pradesh</option><option value="Maharashtra">Maharashtra</option><option value="Manipur">Manipur</option><option value="Meghalaya">Meghalaya</option><option value="Mizoram">Mizoram</option><option value="Nagaland">Nagaland</option><option value="Odisha">Odisha</option><option value="Punjab">Punjab</option><option value="Rajasthan">Rajasthan</option><option value="Sikkim">Sikkim</option><option value="Tamil Nadu">Tamil Nadu</option><option value="Telangana">Telangana</option><option value="Tripura">Tripura</option><option value="Uttar Pradesh">Uttar Pradesh</option><option value="Uttarakhand">Uttarakhand</option><option value="West Bengal">West Bengal</option><option value="Delhi">Delhi</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="flex:1">
+                        <label>City</label>
+                        <select id="cCity">
+                            <option value="">Select State First</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div style="display:flex; gap:10px;">
                     <div class="form-group" style="flex:1"><label>Pincode</label><input type="text" id="cPin"></div>
+                    <div class="form-group" style="flex:1">
+                        <label>Country</label>
+                        <input type="text" id="cCountry" value="India" readonly style="color:#888; cursor:not-allowed; border-color:#555;">
+                    </div>
                 </div>
 
                 <h4 style="color:#d4af37; margin:25px 0 15px; border-bottom:1px solid #333; padding-bottom:5px;">2. Payment Method</h4>
                 <label class="payment-option"><input type="radio" name="payment" value="Paytm"> <span><i class="fa-brands fa-amazon-pay" style="color:#00b9f1; margin-right:5px;"></i> Paytm UPI</span></label>
                 <label class="payment-option"><input type="radio" name="payment" value="GPay"> <span><i class="fa-brands fa-google-pay" style="color:#fff; margin-right:5px;"></i> Google Pay</span></label>
                 <label class="payment-option"><input type="radio" name="payment" value="Razorpay"> <span><i class="fa-solid fa-credit-card" style="color:#d4af37; margin-right:5px;"></i> Razorpay</span></label>
+                <label class="payment-option"><input type="radio" name="payment" value="Crypto (Bitcoin)"> <span><i class="fa-brands fa-bitcoin" style="color:#f7931a; margin-right:5px;"></i> Crypto (Bitcoin)</span></label>
                 <label class="payment-option"><input type="radio" name="payment" value="Cash On Delivery"> <span><i class="fa-solid fa-money-bill-wave" style="color:#2ecc71; margin-right:5px;"></i> Cash on Delivery</span></label>
 
                 <button class="btn-confirm" onclick="confirmOrder()">PLACE ORDER</button>
@@ -396,18 +449,17 @@
         </div>
 
         <div class="cart-sidebar" id="cartSidebar">
-            <div style="display:flex; justify-content:space-between; margin-bottom:20px; border-bottom:1px solid #333; padding-bottom:10px;">
-                <h2 style="margin:0; color:#d4af37; font-family:'Cinzel', serif;">Cart</h2>
-                <span style="cursor:pointer; color:#fff;" onclick="toggleCart()">×</span>
+            <div class="cart-header">
+                <h2 style="margin:0; color:#d4af37; font-family:'Cinzel', serif;">Shopping Cart</h2>
+                <span style="cursor:pointer; color:#fff; font-size:1.5rem;" onclick="toggleCart()">×</span>
             </div>
             <div class="cart-items" id="cartItems"></div>
-            <div style="border-top:1px solid #333; padding-top:20px;">
-                <div style="display:flex; justify-content:space-between; margin-bottom:20px; font-size:1.2rem;">
-                    <span>Total</span>
-                    <span id="cartTotal">₹0</span>
+            <div class="cart-footer">
+                <div class="subtotal-area">
+                    <span>Subtotal</span>
+                    <span id="cartTotal" style="font-weight:bold; color:#d4af37;">₹0</span>
                 </div>
-                <button class="checkout-btn" onclick="openCheckout()">CHECKOUT</button>
-                <button class="buy-now-btn" onclick="openCheckout()">BUY NOW</button>
+                <button class="checkout-btn" onclick="openCheckout()">Proceed to Buy</button>
             </div>
         </div>
     </div>
@@ -415,9 +467,69 @@
     <script>
         // --- DATA ---
         const ownerEmail = "gamerzzunique037@gmail.com";
+        const allowedDomains = [
+            "@gmail.com", "@outlook.com", "@hotmail.com", "@yahoo.com", 
+            "@icloud.com", "@aol.com", "@msn.com", "@proton.me", 
+            "@tuta.com", "@mailbox.org", "@posteo.net", "@zoho.com", 
+            "@gmx.com", "@fastmail.com"
+        ];
+
+        // MAPPING CITIES TO STATES
+        const cityData = {
+            "Punjab": ["Ludhiana", "Amritsar", "Jalandhar", "Patiala", "Bathinda", "Mohali"],
+            "Maharashtra": ["Mumbai", "Pune", "Nagpur", "Nashik", "Aurangabad", "Thane"],
+            "Delhi": ["New Delhi", "North Delhi", "South Delhi", "West Delhi"],
+            "Karnataka": ["Bangalore", "Mysore", "Mangalore", "Hubli"],
+            "Tamil Nadu": ["Chennai", "Coimbatore", "Madurai", "Salem"],
+            "Uttar Pradesh": ["Lucknow", "Kanpur", "Agra", "Varanasi", "Noida"],
+            "Gujarat": ["Ahmedabad", "Surat", "Vadodara", "Rajkot"],
+            "Rajasthan": ["Jaipur", "Jodhpur", "Udaipur", "Kota"],
+            "West Bengal": ["Kolkata", "Howrah", "Darjeeling", "Siliguri"],
+            "Telangana": ["Hyderabad", "Warangal", "Nizamabad"],
+            "Andhra Pradesh": ["Visakhapatnam", "Vijayawada", "Guntur"],
+            "Madhya Pradesh": ["Bhopal", "Indore", "Gwalior", "Jabalpur"],
+            "Bihar": ["Patna", "Gaya", "Bhagalpur", "Muzaffarpur"],
+            // Generic fallback for others
+            "Other": ["Capital City", "Major City"] 
+        };
+
         let products = JSON.parse(localStorage.getItem('shrays_products')) || getInitialData();
         let isAdmin = false;
         let cart = [];
+
+        // --- ON LOAD CHECK LOGIN ---
+        window.onload = function() {
+            if(localStorage.getItem('isLoggedIn') === 'true') {
+                document.getElementById('login-screen').style.display = 'none';
+                document.getElementById('main-app').style.display = 'block';
+                if(localStorage.getItem('userEmail') === ownerEmail) {
+                    isAdmin = true;
+                    document.getElementById('adminPanel').classList.add('active');
+                }
+                renderProducts();
+            }
+        };
+
+        // --- CITY DROPDOWN LOGIC ---
+        function updateCities() {
+            const state = document.getElementById('cState').value;
+            const citySelect = document.getElementById('cCity');
+            citySelect.innerHTML = ""; // Clear existing
+
+            let cities = cityData[state] || ["Select State First"];
+            
+            // If state exists but not in my mini-list, give a generic input or just basic cities
+            if(state && !cityData[state]) {
+                cities = ["Main City", "Capital City", "Other"];
+            }
+
+            cities.forEach(city => {
+                let option = document.createElement("option");
+                option.value = city;
+                option.text = city;
+                citySelect.appendChild(option);
+            });
+        }
 
         // --- PASSWORD TOGGLE ---
         function togglePass() {
@@ -445,27 +557,60 @@
             renderProducts(filtered);
         }
 
+        // --- VALIDATION HELPERS ---
+        function validateEmailDomain(email) {
+            const lowerEmail = email.toLowerCase();
+            return allowedDomains.some(domain => lowerEmail.endsWith(domain));
+        }
+
+        function validateUTR(utr) {
+            const regex = /^[A-Za-z0-9]{12,22}$/;
+            return regex.test(utr);
+        }
+
         // --- LOGIN SYSTEM ---
         function attemptLogin() {
             const email = document.getElementById('loginEmail').value;
             const pass = document.getElementById('loginPass').value;
             const error = document.getElementById('loginError');
 
+            error.innerText = ""; 
+
             if (!email || !pass) {
-                error.innerText = "ACCESS DENIED. CREDENTIALS MISSING.";
+                error.innerText = "ACCESS DENIED: Credentials Missing.";
+                return;
+            }
+
+            if (!validateEmailDomain(email)) {
+                error.innerText = "ACCESS DENIED: Email Provider Not Supported.";
                 return;
             }
 
             if (email === ownerEmail) {
-                isAdmin = true;
-                document.getElementById('adminPanel').classList.add('active');
+                if (pass === "admin123") {
+                    isAdmin = true;
+                    document.getElementById('adminPanel').classList.add('active');
+                } else {
+                    error.innerText = "ACCESS DENIED: Incorrect Admin Password.";
+                    return;
+                }
             } else {
                 isAdmin = false;
             }
 
+            // PERSIST LOGIN
+            localStorage.setItem('isLoggedIn', 'true');
+            localStorage.setItem('userEmail', email);
+
             document.getElementById('login-screen').style.display = 'none';
             document.getElementById('main-app').style.display = 'block';
             renderProducts();
+        }
+
+        function logout() {
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('userEmail');
+            location.reload();
         }
 
         // --- RENDERING (With Search Support) ---
@@ -480,7 +625,6 @@
                 'stationery': 'Executive Stationery', 'food': 'Gamer\'s Fuel'
             };
             
-            // If searching, just show a flat grid, otherwise show categories
             const isSearching = document.getElementById('searchInput').value.length > 0;
 
             if (isSearching) {
@@ -539,8 +683,6 @@
         function addToCart(name, price, img) {
             cart.push({name, price, img});
             updateCart();
-            
-            // SLIDING NOTIFICATION
             const toast = document.getElementById('toast-notification');
             toast.classList.add('show');
             setTimeout(() => { toast.classList.remove('show'); }, 3000);
@@ -557,12 +699,10 @@
                 container.innerHTML += `
                     <div class="cart-item">
                         <img src="${item.img}">
-                        <div style="flex-grow:1;">
-                            <h4 style="margin:0;color:#fff;font-size:0.9rem;">${item.name}</h4>
-                            <p style="margin:5px 0;color:#d4af37;font-weight:bold;">₹${item.price.toLocaleString('en-IN')}</p>
-                        </div>
-                        <div style="display:flex; align-items:center;">
-                             <span style="color:#666;font-size:1.2rem;cursor:pointer;padding:5px;" onclick="cart.splice(${i},1);updateCart()">×</span>
+                        <div class="cart-item-details">
+                            <h4 class="cart-title">${item.name}</h4>
+                            <p class="cart-price">₹${item.price.toLocaleString('en-IN')}</p>
+                            <span class="cart-remove" onclick="cart.splice(${i},1);updateCart()">Remove</span>
                         </div>
                     </div>`;
             });
@@ -577,17 +717,53 @@
         }
         function closeCheckout() { document.getElementById('checkoutModal').style.display = 'none'; }
         
-        function validateUTR(utr) { return /^[0-9]{12}$/.test(utr); }
-
         function confirmOrder() {
-            const name = document.getElementById('cName').value;
-            const phone = document.getElementById('cPhone').value;
-            const addr1 = document.getElementById('cAddr1').value;
+            const name = document.getElementById('cName').value.trim();
+            const phone = document.getElementById('cPhone').value.trim();
+            const addr1 = document.getElementById('cAddr1').value.trim();
             const city = document.getElementById('cCity').value;
-            const pin = document.getElementById('cPin').value;
+            const pin = document.getElementById('cPin').value.trim();
+            const state = document.getElementById('cState').value;
             const total = document.getElementById('cartTotal').innerText;
             
-            if(!name || !phone || !addr1 || !city || !pin) { alert("Please fill details."); return; }
+            // --- STRICT VALIDATIONS ---
+
+            // 1. Name Check (Minimum 2 words - Relaxed as requested)
+            if (name.split(/\s+/).length < 2) {
+                alert("ACCESS DENIED: Full Name must contain at least 2 words (First & Last Name).");
+                return;
+            }
+
+            // 2. Phone Check (Strict 10 digits, Indian mobile series 6-9)
+            const phoneRegex = /^(\+91[\-\s]?)?[6-9]\d{9}$/;
+            if (!phoneRegex.test(phone)) {
+                alert("ACCESS DENIED: Invalid Phone Number.\n- Must be exactly 10 digits.\n- Must contain only numbers.\n- Must start with 6, 7, 8, or 9.");
+                return;
+            }
+
+            // 3. Address Length & Reality Check
+            if (addr1.length < 10 || /([a-z])\1{4,}/i.test(addr1)) {
+                alert("ACCESS DENIED: Address seems invalid or too short. Please enter a proper residential address.");
+                return;
+            }
+
+            // 4. City Check (Now via Dropdown)
+            if (city === "" || city === "Select State First") {
+                alert("ACCESS DENIED: Please select a valid City from the list.");
+                return;
+            }
+
+            // 5. State Check
+            if (state === "") {
+                alert("ACCESS DENIED: Please select a valid State from the list.");
+                return;
+            }
+
+            // 6. Pincode Check (6 digits)
+            if (!/^[1-9][0-9]{5}$/.test(pin)) {
+                alert("ACCESS DENIED: Invalid Pincode. Must be 6 digits.");
+                return;
+            }
 
             const paymentOptions = document.getElementsByName('payment');
             let selectedPayment = null;
@@ -596,17 +772,25 @@
 
             let utrCode = "N/A (COD)";
 
-            if (selectedPayment !== 'Cash On Delivery') {
+            if (selectedPayment === 'Crypto (Bitcoin)') {
+                alert(`Please transfer ${total} worth of Bitcoin to:\n\nbc1q5ckuwqsqe5t7k0mc2lc0g8yw2fxvhyvkekq6ah\n\nCopy this address. Click OK to enter Transaction Hash.`);
+                utrCode = prompt("ENTER BITCOIN TRANSACTION HASH:");
+                if (!utrCode || utrCode.length < 10) { alert("Access Denied: Invalid Transaction Hash."); return; }
+            } 
+            else if (selectedPayment !== 'Cash On Delivery') {
                 alert(`Pay ${total} to: 8892257000\n\nEnter 12-digit UTR next.`);
-                utrCode = prompt("ENTER 12-DIGIT UTR:");
-                if (!utrCode || !validateUTR(utrCode)) { alert("Invalid UTR."); return; }
+                utrCode = prompt("ENTER UTR / TRANSACTION ID (12-22 Chars):");
+                if (!utrCode || !validateUTR(utrCode)) { 
+                    alert("ACCESS DENIED: Invalid UTR Format.\n\nAccepted Formats:\n- UPI: 12 Digits\n- NEFT: 16 Alphanumeric\n- RTGS: 22 Alphanumeric"); 
+                    return; 
+                }
             }
 
             closeCheckout();
-            processAIOrder(name, phone, addr1, city, pin, selectedPayment, utrCode, total);
+            processAIOrder(name, phone, addr1, city, pin, state, selectedPayment, utrCode, total);
         }
 
-        function processAIOrder(name, phone, addr, city, pin, payment, utr, total) {
+        function processAIOrder(name, phone, addr, city, pin, state, payment, utr, total) {
             const overlay = document.getElementById('ai-overlay');
             const term = document.getElementById('terminal-content');
             overlay.style.display = 'flex';
@@ -624,15 +808,12 @@
                 if (i >= steps.length) {
                     clearInterval(interval);
                     
-                    // NEW EMAIL BODY WITH OPTIONS
-                    const body = `NEW ORDER REQUEST\n\nCUSTOMER DETAILS:\nName: ${name}\nPhone: ${phone}\nAddress: ${addr}, ${city} - ${pin}\n\nPAYMENT DETAILS:\nMethod: ${payment}\nUTR/Ref: ${utr}\nTotal: ${total}\n\nITEMS:\n${cart.map(x=>x.name).join(', ')}\n\n----------------------------\nOWNER ACTIONS:\n[ ] ACCEPT: Reply to confirm order.\n[ ] REJECT: Reply to reject (refund in 24h if online payment).`;
+                    const body = `NEW ORDER REQUEST\n\nCUSTOMER DETAILS:\nName: ${name}\nPhone: ${phone}\nAddress: ${addr}, ${city}, ${state} - ${pin}\nCountry: INDIA\n\nPAYMENT DETAILS:\nMethod: ${payment}\nUTR/Ref: ${utr}\nTotal: ${total}\n\nITEMS:\n${cart.map(x=>x.name).join(', ')}\n\n----------------------------\nOWNER ACTIONS:\n[ ] ACCEPT: Reply to confirm order.\n[ ] REJECT: Reply to reject (refund in 24h if online payment).`;
                     
-                    // ALERT BEFORE REDIRECT
                     alert("⚠ IMPORTANT: Redirecting to Email. Please click the 'SEND' button to finalize your request.");
 
                     window.location.href = `mailto:${ownerEmail}?subject=New Order Request: ${name}&body=${encodeURIComponent(body)}`;
                     
-                    // NEW ALERT MESSAGE
                     setTimeout(() => { 
                         overlay.style.display = 'none'; 
                         alert("ORDER REQUEST SENT!\n\nNOTE: Your order will be placed once confirmed by us.\n\nIf rejected, online payments will be refunded within 24 hours.");
@@ -656,7 +837,7 @@
             const id = document.getElementById('editId').value;
             const name = document.getElementById('pName').value;
             const price = parseInt(document.getElementById('pPrice').value);
-            // ... (Simplified for length, assumes logic same as before) ...
+            // ... (Simplified for length) ...
             if(!name) return;
             if(id) { 
                 const idx = products.findIndex(p => p.id == id);
@@ -681,320 +862,12 @@
 
         function getInitialData() {
             return [
-    {
-        "id": 3,
-        "cat": "phones",
-        "brand": "Apple",
-        "name": "iPhone 17",
-        "price": 79900,
-        "img": "https://media.gettyimages.com/id/2235793800/photo/mumbai-maharashtra-india-models-of-iphone-17-series-mobile-phones-seen-on-display-inside-the.jpg?s=612x612&w=0&k=20&c=bCpOfFEWKD0FapaDa4Hf1SYryt3n42JlPfU1sPzQ4F8=",
-        "specs": [
-            "A19 Bionic",
-            "All-Screen Design",
-            "48MP Fusion"
-        ]
-    },
-    {
-        "id": 4,
-        "cat": "hardware",
-        "brand": "Sony",
-        "name": "PlayStation 5 Pro",
-        "price": 48875,
-        "img": "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?auto=format&fit=crop&w=600&q=80",
-        "specs": [
-            "4K @ 120Hz",
-            "2TB SSD",
-            "Haptic Feedback"
-        ]
-    },
-    {
-        "id": 5,
-        "cat": "hardware",
-        "brand": "NVIDIA",
-        "name": "RTX 4090 OC",
-        "price": 165750,
-        "img": "https://m.media-amazon.com/images/I/815d7TTP5UL._AC_UF1000,1000_QL80_.jpg",
-        "specs": [
-            "24GB VRAM",
-            "DLSS 3.5",
-            "Ray Tracing"
-        ]
-    },
-    {
-        "id": 6,
-        "cat": "hardware",
-        "brand": "Razer",
-        "name": "Blade 16 Mercury",
-        "price": 293250,
-        "img": "https://assets2.razerzone.com/images/pnx.assets/62fd0244762cde2b9ccabf21add45c99/blade16-2025-1200x-630.webp",
-        "specs": [
-            "RTX 4090 GPU",
-            "Mini-LED Screen",
-            "i9 Processor"
-        ]
-    },
-    {
-        "id": 7,
-        "cat": "furniture",
-        "brand": "Herman Miller",
-        "name": "Embody Chair",
-        "price": 145000,
-        "img": "https://images.unsplash.com/photo-1592078615290-033ee584e267?auto=format&fit=crop&w=600&q=80",
-        "specs": [
-            "Logitech G Edition",
-            "Pixelated Support",
-            "Cooling Foam"
-        ]
-    },
-    {
-        "id": 8,
-        "cat": "furniture",
-        "brand": "Secretlab",
-        "name": "Magnus Pro Desk",
-        "price": 75000,
-        "img": "https://images.unsplash.com/photo-1593640408182-31c70c8268f5?auto=format&fit=crop&w=600&q=80",
-        "specs": [
-            "Integrated Power",
-            "Full Metal Body",
-            "Magnetic Mgmt"
-        ]
-    },
-    {
-        "id": 9,
-        "cat": "furniture",
-        "brand": "West Elm",
-        "name": "Lounge Sofa",
-        "price": 85000,
-        "img": "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=600&q=80",
-        "specs": [
-            "Velvet Finish",
-            "Modular Design",
-            "Deep Seating"
-        ]
-    },
-    {
-        "id": 10,
-        "cat": "bedroom",
-        "brand": "Eight Sleep",
-        "name": "Pod 3 Smart Bed",
-        "price": 285000,
-        "img": "https://thegadgetflow.com/wp-content/uploads/2022/11/Eight-Sleep-Pod-3-smart-mattress-02.jpg",
-        "specs": [
-            "Temp Control",
-            "Vibration Alarm",
-            "Memory Foam"
-        ]
-    },
-    {
-        "id": 11,
-        "cat": "bedroom",
-        "brand": "IKEA Premium",
-        "name": "Pax Wardrobe",
-        "price": 95000,
-        "img": "https://images.unsplash.com/photo-1558997519-83ea9252edf8?auto=format&fit=crop&w=600&q=80",
-        "specs": [
-            "Tinted Glass",
-            "LED Lighting",
-            "Custom Shelf"
-        ]
-    },
-    {
-        "id": 12,
-        "cat": "bedroom",
-        "brand": "Modern Home",
-        "name": "Smart Nightstand",
-        "price": 25000,
-        "img": "https://images.unsplash.com/photo-1532372320572-cda25653a26d?auto=format&fit=crop&w=600&q=80",
-        "specs": [
-            "Wireless Charging",
-            "Bluetooth Speakers",
-            "Motion Light"
-        ]
-    },
-    {
-        "id": 13,
-        "cat": "rgb",
-        "brand": "Nanoleaf",
-        "name": "Shapes Hexagons",
-        "price": 18000,
-        "img": "https://techcrunch.com/wp-content/uploads/2020/07/Nanoleaf-3.jpg",
-        "specs": [
-            "Music Sync",
-            "Screen Mirror",
-            "16M Colors"
-        ]
-    },
-    {
-        "id": 14,
-        "cat": "rgb",
-        "brand": "GamerGlo",
-        "name": "Neon Sign",
-        "price": 8500,
-        "img": "https://images-cdn.ubuy.co.in/633ab9ab7d8d727745427ef4-wanxing-chill-neon-sign-blue-led-sign.jpg",
-        "specs": [
-            "Handcrafted",
-            "Wall Mount",
-            "Dimmable"
-        ]
-    },
-    {
-        "id": 15,
-        "cat": "rgb",
-        "brand": "Iron Studios",
-        "name": "Spider-Man",
-        "price": 12500,
-        "img": "https://i.etsystatic.com/57125478/r/il/2436c5/6752941604/il_fullxfull.6752941604_jrda.jpg",
-        "specs": [
-            "1/10 Scale",
-            "Hand Painted",
-            "Limited Edition"
-        ]
-    },
-    {
-        "id": 16,
-        "cat": "kitchen",
-        "brand": "Ember",
-        "name": "Smart Mug 2",
-        "price": 14500,
-        "img": "https://accessworld.in/cdn/shop/products/ember_BTM212_F_hero_2048x_4542e88a-72c2-4d93-bb63-7789e85d510f.jpg?v=1639715821&width=2048",
-        "specs": [
-            "App Temp Control",
-            "1.5 Hr Battery",
-            "Charging Coaster"
-        ]
-    },
-    {
-        "id": 17,
-        "cat": "kitchen",
-        "brand": "Breville",
-        "name": "Barista Express",
-        "price": 65000,
-        "img": "https://www.kitchenstuffplus.com/media/catalog/product/8/2/82220_breville-barista-espresso-s-s_250401160150471_fpa4hnoghe5h0njs.jpg",
-        "specs": [
-            "Built-in Grinder",
-            "Precise Espresso",
-            "Micro-foam"
-        ]
-    },
-    {
-        "id": 18,
-        "cat": "kitchen",
-        "brand": "Ninja",
-        "name": "DualZone Fryer",
-        "price": 22000,
-        "img": "https://images-cdn.ubuy.co.in/683e8a5ceb5a51af330e422c-ninja-foodi-6-in-1-smart-10-qt.jpg",
-        "specs": [
-            "2 Baskets",
-            "6 Functions",
-            "75% Less Fat"
-        ]
-    },
-    {
-        "id": 19,
-        "cat": "stationery",
-        "brand": "Montblanc",
-        "name": "Meisterstück Pen",
-        "price": 45000,
-        "img": "https://cdn11.bigcommerce.com/s-5ko0zosub2/images/stencil/1280x1280/products/11886/14028/mb149_14c2tone_fine_5__56363.1606155821.jpg?c=1",
-        "specs": [
-            "Gold-Coated",
-            "Precious Resin",
-            "Handcrafted Nib"
-        ]
-    },
-    {
-        "id": 20,
-        "cat": "stationery",
-        "brand": "Moleskine",
-        "name": "Smart Writing Set",
-        "price": 22000,
-        "img": "https://m.media-amazon.com/images/I/712RdL9LtaL._AC_UF1000,1000_QL80_.jpg",
-        "specs": [
-            "Digital Sync",
-            "Ncoded Paper",
-            "Pen+ Included"
-        ]
-    },
-    {
-        "id": 21,
-        "cat": "stationery",
-        "brand": "Orbitkey",
-        "name": "Desk Organizer",
-        "price": 9500,
-        "img": "https://www.orbitkey.com/cdn/shop/files/Main_Images_1_c92baf9e-336c-44c4-b302-fa9461db599d_550x.jpg?v=1721117624",
-        "specs": [
-            "Wireless Charger",
-            "Custom Divider",
-            "Portable"
-        ]
-    },
-    {
-        "id": 22,
-        "cat": "food",
-        "brand": "Nestle",
-        "name": "Masala Maggi",
-        "price": 60,
-        "img": "https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?auto=format&fit=crop&w=600&q=80",
-        "specs": [
-            "Double Masala",
-            "Piping Hot",
-            "Gamer Snack"
-        ]
-    },
-    {
-        "id": 23,
-        "cat": "food",
-        "brand": "Italiano",
-        "name": "Pepperoni Pizza",
-        "price": 449,
-        "img": "https://mariosmeatmarket.com/wp-content/uploads/2018/11/Marios-Italian-Deli-Homemade-Pepperoni-Pizza.jpg",
-        "specs": [
-            "Extra Cheese",
-            "Spicy Pepperoni",
-            "12-inch Medium"
-        ]
-    },
-    {
-        "id": 24,
-        "cat": "food",
-        "brand": "Doritos",
-        "name": "Nacho Party Pack",
-        "price": 90,
-        "img": "https://www.kroger.com/product/images/xlarge/front/0002840064306",
-        "specs": [
-            "Family Size",
-            "Intense Cheese",
-            "Crunchy"
-        ]
-    },
-    {
-        "id": 1770472373805,
-        "cat": "phones",
-        "brand": "Apple",
-        "name": "Iphone 17 pro",
-        "price": 134900,
-        "img": "https://media.gettyimages.com/id/2233991889/photo/09-september-2025-usa-cupertino-a-device-of-the-new-iphone-17-pro-is-seen-at-the-presentation.jpg?s=612x612&w=0&k=20&c=-kL273biF2KPIdLZSXwhKs7iuayornwx7Qlm8zLzGq8=",
-        "specs": []
-    },
-    {
-        "id": 1770472464046,
-        "cat": "phones",
-        "brand": "Apple",
-        "name": "Iphone 17 pro max",
-        "price": 149900,
-        "img": "https://media.gettyimages.com/id/2235776278/photo/the-iphone-17-pro-and-the-iphone-17-pro-max-during-the-first-day-of-in-store-sales-of-apples.jpg?s=612x612&w=0&k=20&c=uXEsbDEPR438fSJd2E_YQgP_rYu5oFR_VQqEXX3CUdI=",
-        "specs": []
-    },
-    {
-        "id": 1770473178557,
-        "cat": "stationery",
-        "brand": "DOMS ",
-        "name": "DOMS Y1+ SUPER DARK PENCIL",
-        "price": 111,
-        "img": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcSykrv1GlrDZiqk34WxnqXgYd3oAmCkG23SN9fvcFaPSDuZdC1f-ERopH9bVVqFobq3Aluq8KgUxU-WCgRQiaBVcmbSaL1BmSmsU1mX-onVrS4kHDSfWW8x",
-        "specs": []
-    }
-]
+                { id: 3, cat: 'phones', brand: 'Apple', name: 'iPhone 17', price: 79900, img: 'https://media.gettyimages.com/id/2235793800/photo/mumbai-maharashtra-india-models-of-iphone-17-series-mobile-phones-seen-on-display-inside-the.jpg?s=612x612&w=0&k=20&c=bCpOfFEWKD0FapaDa4Hf1SYryt3n42JlPfU1sPzQ4F8=', specs: ['A19 Bionic'] },
+                { id: 4, cat: 'hardware', brand: 'Sony', name: 'PS5 Pro', price: 48875, img: 'https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?auto=format&fit=crop&w=600&q=80', specs: ['4K 120Hz'] },
+                { id: 5, cat: 'hardware', brand: 'NVIDIA', name: 'RTX 4090', price: 165000, img: 'https://m.media-amazon.com/images/I/815d7TTP5UL._AC_UF1000,1000_QL80_.jpg', specs: ['24GB VRAM'] },
+                { id: 22, cat: 'food', brand: 'Nestle', name: 'Masala Maggi', price: 60, img: 'https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?auto=format&fit=crop&w=600&q=80', specs: ['Double Masala'] },
+                { id: 19, cat: 'stationery', brand: 'Montblanc', name: 'Meisterstück', price: 45000, img: 'https://cdn11.bigcommerce.com/s-5ko0zosub2/images/stencil/1280x1280/products/11886/14028/mb149_14c2tone_fine_5__56363.1606155821.jpg?c=1', specs: ['Gold Coated'] }
+            ];
         }
     </script>
 </body>
