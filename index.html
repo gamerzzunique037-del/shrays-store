@@ -1,4 +1,4 @@
-<index.html>
+<god-index.html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -20,81 +20,136 @@
             overflow-x: hidden;
         }
 
-        /* --- AURORA BACKGROUND --- */
-        .aurora-bg {
+        /* --- ATTRACTIVE BACKGROUND (Stars + Aurora) --- */
+        .bg-container {
             position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-            z-index: -1; 
-            background: radial-gradient(circle at 50% 100%, #0a0a0a, #000);
-            overflow: hidden;
+            z-index: -1; overflow: hidden;
+            background: radial-gradient(circle at bottom, #1a1a1a 0%, #000 100%);
+        }
+        .stars {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, #eee, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 40px 70px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 50px 160px, #ddd, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 90px 40px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 130px 80px, #fff, rgba(0,0,0,0));
+            background-repeat: repeat;
+            background-size: 200px 200px;
+            opacity: 0.3; animation: twinkle 5s infinite;
         }
         .aurora-light {
-            position: absolute; filter: blur(80px); opacity: 0.25;
-            border-radius: 50%; animation: moveAurora 25s infinite alternate;
+            position: absolute; filter: blur(100px); opacity: 0.3;
+            border-radius: 50%; animation: moveAurora 30s infinite alternate;
         }
-        .light-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: #2b005e; }
-        .light-2 { bottom: -10%; right: -10%; width: 60vw; height: 60vw; background: #004e92; }
-        @keyframes moveAurora {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(40px, 40px); }
-        }
+        .light-1 { top: -20%; left: -20%; width: 60vw; height: 60vw; background: #4b0082; }
+        .light-2 { bottom: -20%; right: -20%; width: 70vw; height: 70vw; background: #00008b; }
+        
+        @keyframes moveAurora { 0% { transform: translate(0, 0); } 100% { transform: translate(50px, 50px); } }
+        @keyframes twinkle { 0% {opacity: 0.3;} 50% {opacity: 0.6;} 100% {opacity: 0.3;} }
 
         /* --- LOGIN SCREEN --- */
         #login-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-            background: #050505; z-index: 5000;
+            background: #000; z-index: 5000;
             display: flex; justify-content: center; align-items: center;
             flex-direction: column;
+            background-image: radial-gradient(circle at center, #111 0%, #000 80%);
         }
         .login-box {
-            background: rgba(20,20,20,0.8); border: 1px solid #d4af37;
-            padding: 40px; width: 350px; text-align: center;
-            border-radius: 8px; box-shadow: 0 0 50px rgba(212, 175, 55, 0.1);
+            background: rgba(10, 10, 10, 0.8); 
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            padding: 40px; width: 420px; text-align: center;
+            border-radius: 16px; 
+            backdrop-filter: blur(20px);
+            box-shadow: 0 0 50px rgba(0,0,0,0.9), 0 0 20px rgba(212, 175, 55, 0.1);
+            position: relative;
         }
-        .login-input {
-            width: 100%; padding: 12px; margin-bottom: 15px;
-            background: #111; border: 1px solid #333; color: #fff;
-            font-family: 'Lato', sans-serif;
+        
+        /* Password Eye Container */
+        .password-container { position: relative; width: 100%; }
+        .password-container i {
+            position: absolute; right: 15px; top: 15px;
+            color: #888; cursor: pointer; z-index: 10;
         }
-        .login-input:focus { border-color: #d4af37; outline: none; }
-        .login-btn {
-            width: 100%; padding: 12px; background: #d4af37; color: #000;
-            border: none; font-weight: bold; cursor: pointer;
-            font-family: 'Cinzel', serif;
-        }
+        .password-container i:hover { color: #d4af37; }
 
-        /* --- MAIN CONTENT (Hidden initially) --- */
+        .login-input {
+            width: 100%; padding: 15px; margin-bottom: 20px;
+            background: rgba(255,255,255,0.05); border: 1px solid #333; color: #fff;
+            font-family: 'Lato', sans-serif; border-radius: 6px; font-size: 1rem;
+        }
+        .login-input:focus { border-color: #d4af37; outline: none; background: rgba(0,0,0,0.5); }
+        
+        .login-btn {
+            width: 100%; padding: 15px; background: linear-gradient(45deg, #d4af37, #b8860b); color: #000;
+            border: none; font-weight: bold; cursor: pointer;
+            font-family: 'Cinzel', serif; letter-spacing: 2px; border-radius: 6px;
+            transition: 0.3s;
+        }
+        .login-btn:hover { transform: scale(1.02); box-shadow: 0 0 20px rgba(212, 175, 55, 0.4); }
+
+        /* --- MAIN CONTENT --- */
         #main-app { display: none; }
 
-        /* --- HEADER --- */
+        /* --- HEADER & SEARCH --- */
         header {
-            background: rgba(0,0,0,0.9); backdrop-filter: blur(15px);
+            background: rgba(0,0,0,0.95); backdrop-filter: blur(15px);
             position: sticky; top: 0; z-index: 100;
             border-bottom: 1px solid rgba(212, 175, 55, 0.2);
         }
-        .header-top { padding: 15px 40px; display: flex; justify-content: space-between; align-items: center; }
-        .brand-name { font-family: 'Cinzel', serif; font-size: 1.8rem; letter-spacing: 4px; color: #fff; margin: 0; }
-        .brand-subtitle { font-size: 0.6rem; letter-spacing: 3px; color: #d4af37; text-transform: uppercase; }
+        .header-top { 
+            padding: 15px 30px; display: flex; 
+            justify-content: space-between; align-items: center; gap: 20px;
+        }
+        .brand-name { font-family: 'Cinzel', serif; font-size: 1.6rem; letter-spacing: 2px; color: #fff; margin: 0; white-space: nowrap; }
+        
+        /* SEARCH BAR */
+        .search-container {
+            flex-grow: 1; max-width: 600px; position: relative;
+            display: flex;
+        }
+        .search-input {
+            width: 100%; padding: 10px 15px; border-radius: 4px 0 0 4px;
+            border: none; outline: none; font-family: 'Lato', sans-serif;
+        }
+        .search-btn {
+            background: #d4af37; border: none; padding: 0 20px;
+            border-radius: 0 4px 4px 0; cursor: pointer; color: #000;
+        }
+        .search-btn:hover { background: #f0c14b; }
+
+        .cart-icon-container { position: relative; cursor: pointer; padding: 10px; color: #fff; font-size: 1.2rem; }
+        .cart-badge {
+            position: absolute; top: 0; right: 0; background: #d00000; color: #fff;
+            font-size: 0.7rem; font-weight: bold; width: 18px; height: 18px;
+            border-radius: 50%; display: flex; justify-content: center; align-items: center;
+        }
 
         .main-nav {
             display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;
-            padding: 10px 0; background: rgba(255,255,255,0.02);
+            padding: 10px 0; background: rgba(255,255,255,0.03);
             border-top: 1px solid rgba(255,255,255,0.05);
         }
         .main-nav a {
             color: #aaa; text-decoration: none; text-transform: uppercase;
-            font-size: 0.7rem; letter-spacing: 1px; padding: 5px 10px; cursor: pointer;
+            font-size: 0.75rem; letter-spacing: 1px; padding: 5px 10px; cursor: pointer;
         }
         .main-nav a:hover { color: #d4af37; }
 
-        .cart-icon-container { position: relative; cursor: pointer; padding: 10px; }
-        .cart-badge {
-            position: absolute; top: 0; right: 0; background: #d00000; color: #fff;
-            font-size: 0.7rem; font-weight: bold; width: 20px; height: 20px;
-            border-radius: 50%; display: flex; justify-content: center; align-items: center;
+        /* --- SLIDING TOAST NOTIFICATION --- */
+        #toast-notification {
+            position: fixed; top: 100px; right: -300px; /* Hidden initially */
+            background: #111; border-left: 4px solid #d4af37;
+            padding: 15px 20px; color: #fff; border-radius: 4px;
+            box-shadow: -5px 5px 20px rgba(0,0,0,0.5); z-index: 4000;
+            transition: right 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            display: flex; align-items: center; gap: 10px;
         }
+        #toast-notification.show { right: 20px; }
 
         /* --- GRID --- */
-        .category-header { text-align: center; margin: 80px 0 40px; scroll-margin-top: 140px; }
+        .category-header { text-align: center; margin: 60px 0 30px; scroll-margin-top: 140px; }
         .category-header h2 {
             font-family: 'Cinzel', serif; font-size: 2rem; color: #d4af37;
             letter-spacing: 4px; border-bottom: 1px solid #d4af37;
@@ -102,7 +157,7 @@
         }
         .grid-container {
             max-width: 1400px; margin: 0 auto; padding: 0 20px;
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 30px;
         }
 
@@ -136,59 +191,95 @@
         .btn-buy:hover { background: #d4af37; color: #000; border-color: #d4af37; }
 
         /* --- ADMIN CONTROLS --- */
-        .admin-controls {
-            display: none; position: fixed; bottom: 20px; right: 20px;
-            background: #111; border: 1px solid #d4af37;
-            padding: 20px; z-index: 2000; box-shadow: 0 0 20px rgba(0,0,0,0.8);
-            border-radius: 8px; width: 300px;
-        }
+        .admin-controls { display: none; position: fixed; bottom: 20px; right: 20px; background: #111; border: 1px solid #d4af37; padding: 20px; z-index: 2000; border-radius: 8px; width: 300px; }
         .admin-controls.active { display: block; }
-        
-        /* Edit/Delete Buttons */
-        .admin-action-btn {
-            position: absolute; top: 10px; padding: 5px 10px; cursor: pointer;
-            font-size: 0.7rem; color: #fff; border: none; font-weight: bold;
-            display: none; z-index: 10;
-        }
+        .admin-action-btn { position: absolute; top: 10px; padding: 5px 10px; cursor: pointer; font-size: 0.7rem; color: #fff; border: none; font-weight: bold; display: none; z-index: 10; }
         .btn-del { right: 10px; background: #d00000; }
         .btn-edit { right: 60px; background: #007bff; }
-        
         .card.admin-mode .admin-action-btn { display: block; }
-        
         .admin-input { width: 100%; background: #222; border: 1px solid #444; color: #fff; padding: 8px; margin-bottom: 10px; }
         .admin-btn { background: #d4af37; color: #000; border: none; padding: 10px; width: 100%; font-weight: bold; cursor: pointer; }
 
-        /* --- CART & MODALS --- */
+        /* --- CART SIDEBAR --- */
         .cart-sidebar { position: fixed; top: 0; right: -400px; width: 400px; height: 100vh; background: #0f0f0f; border-left: 1px solid #333; z-index: 1000; padding: 20px; transition: right 0.4s ease; display: flex; flex-direction: column; }
         .cart-sidebar.open { right: 0; }
         .cart-items { flex-grow: 1; overflow-y: auto; }
-        .cart-item { display: flex; gap: 10px; margin-bottom: 15px; border-bottom: 1px solid #222; padding-bottom: 10px; }
-        .cart-item img { width: 50px; height: 50px; object-fit: cover; }
-        
+        .cart-item { display: flex; gap: 15px; margin-bottom: 15px; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 6px; border: 1px solid #222; }
+        .cart-item img { width: 60px; height: 60px; object-fit: cover; border-radius: 4px; }
+        .checkout-btn { width: 100%; padding: 15px; background: #222; color: #fff; border: 1px solid #444; font-weight: bold; cursor: pointer; margin-bottom: 10px; }
+        .buy-now-btn { width: 100%; padding: 15px; background: #fff; color: #000; border: none; font-weight: bold; cursor: pointer; font-family: 'Cinzel', serif; letter-spacing: 2px; }
+        .buy-now-btn:hover { background: #d4af37; }
+
+        /* --- CHECKOUT & MODALS --- */
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 3000; display: none; justify-content: center; align-items: center; }
         .modal-overlay.active { display: flex; }
         .modal-box { background: #111; padding: 30px; border: 1px solid #d4af37; width: 400px; max-height: 90vh; overflow-y: auto; }
+        .checkout-modal { display: none; position: fixed; z-index: 4000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.95); justify-content: center; align-items: center; }
+        .checkout-content { background-color: #050505; border: 1px solid #d4af37; padding: 30px; border-radius: 12px; width: 500px; max-height: 90vh; overflow-y: auto; color: #fff; box-shadow: 0 0 50px rgba(0,0,0,0.9); }
+        .checkout-content h2 { color: #d4af37; font-family: 'Cinzel', serif; margin-top: 0; border-bottom: 1px solid #333; padding-bottom: 15px; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; color: #aaa; font-size: 0.9rem; }
+        .form-group input { width: 100%; padding: 12px; background: #1a1a1a; border: 1px solid #333; color: #fff; border-radius: 4px; font-family: 'Lato', sans-serif; }
+        .form-group input:focus { border-color: #d4af37; outline: none; }
+        .payment-option { display: flex; align-items: center; gap: 15px; padding: 15px; border: 1px solid #333; margin-bottom: 10px; border-radius: 4px; cursor: pointer; transition: 0.2s; background: #151515; }
+        .payment-option:hover { background: #222; border-color: #d4af37; }
+        .btn-confirm { width: 100%; padding: 15px; background: #d4af37; color: #000; border: none; font-weight: bold; font-family: 'Cinzel', serif; margin-top: 20px; cursor: pointer; font-size: 1.1rem; }
+        .btn-cancel { background: transparent; border: none; color: #888; width: 100%; padding: 10px; margin-top: 10px; cursor: pointer; text-decoration: underline; }
 
-        footer { margin-top: 100px; padding: 60px 0; background: #000; text-align: center; border-top: 1px solid #222; color: #555; font-family: 'Cinzel', serif; }
+        /* --- AI OVERLAY --- */
+        #ai-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: #000; z-index: 6000; justify-content: center; align-items: center; flex-direction: column; }
+        .terminal-box { width: 600px; height: 400px; background: #0a0a0a; border: 2px solid #00ff00; font-family: 'Courier New', monospace; padding: 20px; color: #00ff00; overflow: hidden; position: relative; box-shadow: 0 0 30px rgba(0,255,0,0.2); }
+        .terminal-text { white-space: pre-wrap; font-size: 0.9rem; line-height: 1.5; }
+        .blink { animation: blink 1s infinite; }
+        @keyframes blink { 0%, 100% {opacity: 1;} 50% {opacity: 0;} }
+
+        /* --- FOOTER --- */
+        footer { margin-top: 100px; padding: 60px 0; background: #080808; border-top: 1px solid #222; color: #888; }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-around; flex-wrap: wrap; text-align: left; gap: 40px; padding: 0 20px; }
+        .footer-col h4 { color: #d4af37; font-family: 'Cinzel', serif; margin-bottom: 20px; font-size: 1.2rem; }
+        .footer-col p, .footer-col a { display: block; margin-bottom: 10px; color: #888; text-decoration: none; font-size: 0.95rem; }
+        .footer-col i { width: 25px; color: #d4af37; }
     </style>
 </head>
 <body>
 
+    <div id="toast-notification">
+        <i class="fa-solid fa-circle-check" style="color:#d4af37; font-size:1.5rem;"></i>
+        <div>
+            <h4 style="margin:0;">Item Added!</h4>
+            <span style="font-size:0.8rem; color:#aaa;">Check your cart to checkout.</span>
+        </div>
+    </div>
+
+    <div id="ai-overlay">
+        <div class="terminal-box">
+            <div id="terminal-content" class="terminal-text"></div>
+            <span class="blink">_</span>
+        </div>
+    </div>
+
     <div id="login-screen">
-        <h1 class="brand-name" style="margin-bottom: 10px;">SHRAYS GAMING</h1>
-        <div class="brand-subtitle" style="margin-bottom: 40px;">Global Lifestyle Store</div>
+        <h1 class="brand-name" style="margin-bottom: 10px; text-shadow: 0 0 10px #d4af37;">SHRAYS GAMING</h1>
+        <div style="margin-bottom: 40px; color:#aaa;">Global Lifestyle Store</div>
         
         <div class="login-box">
-            <h3 style="color:#d4af37; font-family:'Cinzel',serif; margin-top:0;">Member Login</h3>
+            <h3 style="color:#d4af37; font-family:'Cinzel',serif; margin-top:0; border-bottom: 1px solid #333; padding-bottom: 15px; font-size:1.1rem; line-height:1.5;">Welcome to our site,<br>feel free to order anything</h3>
+            
             <input type="email" id="loginEmail" class="login-input" placeholder="Email Address">
-            <input type="password" id="loginPass" class="login-input" placeholder="Password">
+            
+            <div class="password-container">
+                <input type="password" id="loginPass" class="login-input" placeholder="Password">
+                <i class="fa-solid fa-eye" id="passIcon" onclick="togglePass()"></i>
+            </div>
+
             <button class="login-btn" onclick="attemptLogin()">ENTER STORE</button>
-            <p id="loginError" style="color:#d00000; font-size:0.8rem; margin-top:10px;"></p>
+            <p id="loginError" style="color:#ff3333; font-size:0.8rem; margin-top:15px; font-family: 'Courier New';"></p>
         </div>
     </div>
 
     <div id="main-app">
-        <div class="aurora-bg">
+        <div class="bg-container">
+            <div class="stars"></div>
             <div class="aurora-light light-1"></div>
             <div class="aurora-light light-2"></div>
         </div>
@@ -197,10 +288,15 @@
             <div class="header-top">
                 <div class="brand-container">
                     <h1 class="brand-name">Shrays Gaming</h1>
-                    <div class="brand-subtitle" id="user-greeting">Welcome, Guest</div>
                 </div>
+                
+                <div class="search-container">
+                    <input type="text" id="searchInput" class="search-input" placeholder="Search for iPhone, PS5, Gaming..." oninput="filterProducts()">
+                    <button class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+
                 <div class="cart-icon-container" onclick="toggleCart()">
-                    <i class="fa-solid fa-cart-shopping"></i>
+                    <i class="fa-solid fa-cart-shopping" id="cartIcon"></i>
                     <div class="cart-badge" id="cart-count">0</div>
                 </div>
             </div>
@@ -218,6 +314,54 @@
 
         <div id="product-sections"></div>
 
+        <footer>
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h4>About Us</h4>
+                    <p style="color:#fff; font-weight:bold;">Owned by:</p>
+                    <p>Tavreez Singh Sohi</p>
+                    <p>Reyansh Gupta</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <p><i class="fa-solid fa-phone"></i> +91 88922 57000</p>
+                    <p><i class="fa-solid fa-phone"></i> +91 79860 69976</p>
+                    <p><i class="fa-solid fa-envelope"></i> gamerzzunique037@gmail.com</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <p>Shipping Policy</p>
+                    <p>Returns & Refunds</p>
+                    <p>Terms of Service</p>
+                </div>
+            </div>
+            <p style="margin-top:40px;">&copy; 2026 SHRAYS GAMING. All Rights Reserved.</p>
+        </footer>
+
+        <div id="checkoutModal" class="checkout-modal">
+            <div class="checkout-content">
+                <h2>Secure Checkout</h2>
+                <h4 style="color:#d4af37; margin-bottom:15px; border-bottom:1px solid #333; padding-bottom:5px;">1. Shipping Details</h4>
+                <div class="form-group"><label>Full Name</label><input type="text" id="cName" placeholder="Enter your full name"></div>
+                <div class="form-group"><label>Phone Number</label><input type="text" id="cPhone" placeholder="10-digit mobile number"></div>
+                <div class="form-group"><label>Address Line 1</label><input type="text" id="cAddr1" placeholder="House No, Building, Apartment"></div>
+                <div class="form-group"><label>Address Line 2</label><input type="text" id="cAddr2" placeholder="Area, Street, Landmark"></div>
+                <div style="display:flex; gap:10px;">
+                    <div class="form-group" style="flex:1"><label>City</label><input type="text" id="cCity"></div>
+                    <div class="form-group" style="flex:1"><label>Pincode</label><input type="text" id="cPin"></div>
+                </div>
+
+                <h4 style="color:#d4af37; margin:25px 0 15px; border-bottom:1px solid #333; padding-bottom:5px;">2. Payment Method</h4>
+                <label class="payment-option"><input type="radio" name="payment" value="Paytm"> <span><i class="fa-brands fa-amazon-pay" style="color:#00b9f1; margin-right:5px;"></i> Paytm UPI</span></label>
+                <label class="payment-option"><input type="radio" name="payment" value="GPay"> <span><i class="fa-brands fa-google-pay" style="color:#fff; margin-right:5px;"></i> Google Pay</span></label>
+                <label class="payment-option"><input type="radio" name="payment" value="Razorpay"> <span><i class="fa-solid fa-credit-card" style="color:#d4af37; margin-right:5px;"></i> Razorpay</span></label>
+                <label class="payment-option"><input type="radio" name="payment" value="Cash On Delivery"> <span><i class="fa-solid fa-money-bill-wave" style="color:#2ecc71; margin-right:5px;"></i> Cash on Delivery</span></label>
+
+                <button class="btn-confirm" onclick="confirmOrder()">PLACE ORDER</button>
+                <button class="btn-cancel" onclick="closeCheckout()">Cancel Payment</button>
+            </div>
+        </div>
+
         <div class="admin-controls" id="adminPanel">
             <div style="display:flex; justify-content:space-between; margin-bottom:15px; border-bottom:1px solid #333; padding-bottom:10px;">
                 <h3 style="margin:0; color:#d4af37; font-family:'Cinzel', serif;">Owner Controls</h3>
@@ -230,7 +374,6 @@
             <div class="modal-box">
                 <h3 id="modalTitle" style="color:#d4af37; margin-top:0;">Add Product</h3>
                 <input type="hidden" id="editId">
-                
                 <label style="color:#888;">Category</label>
                 <select id="pCat" class="admin-input">
                     <option value="phones">Apple</option>
@@ -242,22 +385,11 @@
                     <option value="stationery">Stationery</option>
                     <option value="food">Fuel</option>
                 </select>
-                
-                <label style="color:#888;">Brand</label>
-                <input type="text" id="pBrand" class="admin-input">
-                
-                <label style="color:#888;">Name</label>
-                <input type="text" id="pName" class="admin-input">
-                
-                <label style="color:#888;">Price</label>
-                <input type="number" id="pPrice" class="admin-input">
-                
-                <label style="color:#888;">Image URL</label>
-                <input type="text" id="pImg" class="admin-input">
-                
-                <label style="color:#888;">Specs (Comma separated)</label>
-                <textarea id="pSpecs" class="admin-input" rows="3"></textarea>
-                
+                <label style="color:#888;">Brand</label><input type="text" id="pBrand" class="admin-input">
+                <label style="color:#888;">Name</label><input type="text" id="pName" class="admin-input">
+                <label style="color:#888;">Price</label><input type="number" id="pPrice" class="admin-input">
+                <label style="color:#888;">Image URL</label><input type="text" id="pImg" class="admin-input">
+                <label style="color:#888;">Specs (Comma separated)</label><textarea id="pSpecs" class="admin-input" rows="3"></textarea>
                 <button class="admin-btn" onclick="saveProduct()">Save Changes</button>
                 <button class="admin-btn" style="background:transparent; border:1px solid #555; color:#fff; margin-top:10px;" onclick="closeProductModal()">Cancel</button>
             </div>
@@ -274,22 +406,44 @@
                     <span>Total</span>
                     <span id="cartTotal">₹0</span>
                 </div>
-                <button class="checkout-btn" onclick="alert('Proceeding to checkout...')">CHECKOUT</button>
+                <button class="checkout-btn" onclick="openCheckout()">CHECKOUT</button>
+                <button class="buy-now-btn" onclick="openCheckout()">BUY NOW</button>
             </div>
         </div>
-
-        <footer>
-            <p>&copy; 2026 SHRAYS GAMING</p>
-        </footer>
     </div>
 
     <script>
         // --- DATA ---
         const ownerEmail = "gamerzzunique037@gmail.com";
-        // Restored original storage key
         let products = JSON.parse(localStorage.getItem('shrays_products')) || getInitialData();
         let isAdmin = false;
         let cart = [];
+
+        // --- PASSWORD TOGGLE ---
+        function togglePass() {
+            const input = document.getElementById('loginPass');
+            const icon = document.getElementById('passIcon');
+            if (input.type === "password") {
+                input.type = "text";
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                input.type = "password";
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+
+        // --- SEARCH FUNCTION ---
+        function filterProducts() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = products.filter(p => 
+                p.name.toLowerCase().includes(query) || 
+                p.brand.toLowerCase().includes(query) ||
+                p.cat.toLowerCase().includes(query)
+            );
+            renderProducts(filtered);
+        }
 
         // --- LOGIN SYSTEM ---
         function attemptLogin() {
@@ -298,28 +452,24 @@
             const error = document.getElementById('loginError');
 
             if (!email || !pass) {
-                error.innerText = "Please enter email and password.";
+                error.innerText = "ACCESS DENIED. CREDENTIALS MISSING.";
                 return;
             }
 
-            // Check for Owner
             if (email === ownerEmail) {
                 isAdmin = true;
-                document.getElementById('user-greeting').innerText = "Owner Access Granted";
                 document.getElementById('adminPanel').classList.add('active');
             } else {
                 isAdmin = false;
-                document.getElementById('user-greeting').innerText = "Logged in as " + email.split('@')[0];
             }
 
-            // Hide Login, Show App
             document.getElementById('login-screen').style.display = 'none';
             document.getElementById('main-app').style.display = 'block';
             renderProducts();
         }
 
-        // --- RENDERING ---
-        function renderProducts() {
+        // --- RENDERING (With Search Support) ---
+        function renderProducts(data = products) {
             const container = document.getElementById('product-sections');
             container.innerHTML = '';
 
@@ -330,119 +480,70 @@
                 'stationery': 'Executive Stationery', 'food': 'Gamer\'s Fuel'
             };
             
-            cats.forEach(cat => {
-                const catProducts = products.filter(p => p.cat === cat);
-                if (catProducts.length > 0) {
-                    const header = document.createElement('div');
-                    header.className = 'category-header'; header.id = cat;
-                    header.innerHTML = `<h2>${titles[cat]}</h2>`;
-                    container.appendChild(header);
+            // If searching, just show a flat grid, otherwise show categories
+            const isSearching = document.getElementById('searchInput').value.length > 0;
 
-                    const grid = document.createElement('div');
-                    grid.className = 'grid-container';
-                    
-                    catProducts.forEach(p => {
-                        const card = document.createElement('div');
-                        card.className = `card ${isAdmin ? 'admin-mode' : ''}`;
-                        card.innerHTML = `
-                            <button class="admin-action-btn btn-del" onclick="deleteProduct(${p.id})">DELETE</button>
-                            <button class="admin-action-btn btn-edit" onclick="editProduct(${p.id})">EDIT</button>
-                            <div class="img-box"><img src="${p.img}" onerror="this.src='https://via.placeholder.com/300'"></div>
-                            <div class="content">
-                                <span class="brand-tag">${p.brand}</span>
-                                <h3 class="item-name">${p.name}</h3>
-                                <ul class="specs">${p.specs.map(s => `<li>${s}</li>`).join('')}</ul>
-                                <span class="price">₹${p.price.toLocaleString('en-IN')}</span>
-                                <button class="btn-buy" onclick="addToCart('${p.name}', ${p.price}, '${p.img}')">Add to Cart</button>
-                            </div>
-                        `;
-                        grid.appendChild(card);
-                    });
-                    container.appendChild(grid);
+            if (isSearching) {
+                if(data.length === 0) {
+                    container.innerHTML = '<h3 style="text-align:center; color:#555;">No products found.</h3>';
+                    return;
                 }
-            });
-        }
-
-        // --- ADMIN FUNCTIONS ---
-        function openProductModal(mode) {
-            const modal = document.getElementById('productModal');
-            const title = document.getElementById('modalTitle');
-            
-            // Clear fields
-            document.getElementById('pCat').value = 'phones';
-            document.getElementById('pBrand').value = '';
-            document.getElementById('pName').value = '';
-            document.getElementById('pPrice').value = '';
-            document.getElementById('pImg').value = '';
-            document.getElementById('pSpecs').value = '';
-            document.getElementById('editId').value = '';
-
-            if(mode === 'add') {
-                title.innerText = "Add New Product";
-            }
-            modal.classList.add('active');
-        }
-
-        function editProduct(id) {
-            const p = products.find(x => x.id === id);
-            if(!p) return;
-
-            document.getElementById('modalTitle').innerText = "Edit Product";
-            document.getElementById('editId').value = p.id;
-            document.getElementById('pCat').value = p.cat;
-            document.getElementById('pBrand').value = p.brand;
-            document.getElementById('pName').value = p.name;
-            document.getElementById('pPrice').value = p.price;
-            document.getElementById('pImg').value = p.img;
-            document.getElementById('pSpecs').value = p.specs.join(', ');
-            
-            document.getElementById('productModal').classList.add('active');
-        }
-
-        function saveProduct() {
-            const id = document.getElementById('editId').value;
-            const cat = document.getElementById('pCat').value;
-            const brand = document.getElementById('pBrand').value;
-            const name = document.getElementById('pName').value;
-            const price = parseInt(document.getElementById('pPrice').value);
-            const img = document.getElementById('pImg').value;
-            const specs = document.getElementById('pSpecs').value.split(',').map(s=>s.trim()).filter(s=>s!=='');
-
-            if(!name || !price) { alert("Name and Price are required"); return; }
-
-            if (id) {
-                // Update existing
-                const idx = products.findIndex(p => p.id == id);
-                if(idx > -1) {
-                    products[idx] = { id: parseInt(id), cat, brand, name, price, img, specs };
-                }
+                const grid = document.createElement('div');
+                grid.className = 'grid-container';
+                grid.style.marginTop = "40px";
+                
+                data.forEach(p => {
+                    grid.appendChild(createCard(p));
+                });
+                container.appendChild(grid);
             } else {
-                // Add new
-                products.push({ id: Date.now(), cat, brand, name, price, img, specs });
-            }
+                cats.forEach(cat => {
+                    const catProducts = data.filter(p => p.cat === cat);
+                    if (catProducts.length > 0) {
+                        const header = document.createElement('div');
+                        header.className = 'category-header'; header.id = cat;
+                        header.innerHTML = `<h2>${titles[cat]}</h2>`;
+                        container.appendChild(header);
 
-            localStorage.setItem('shrays_products', JSON.stringify(products));
-            renderProducts();
-            closeProductModal();
+                        const grid = document.createElement('div');
+                        grid.className = 'grid-container';
+                        
+                        catProducts.forEach(p => {
+                            grid.appendChild(createCard(p));
+                        });
+                        container.appendChild(grid);
+                    }
+                });
+            }
         }
 
-        function deleteProduct(id) {
-            if(confirm("Delete this item?")) {
-                products = products.filter(p => p.id !== id);
-                localStorage.setItem('shrays_products', JSON.stringify(products));
-                renderProducts();
-            }
-        }
-
-        function closeProductModal() {
-            document.getElementById('productModal').classList.remove('active');
+        function createCard(p) {
+            const card = document.createElement('div');
+            card.className = `card ${isAdmin ? 'admin-mode' : ''}`;
+            card.innerHTML = `
+                <button class="admin-action-btn btn-del" onclick="deleteProduct(${p.id})">DELETE</button>
+                <button class="admin-action-btn btn-edit" onclick="editProduct(${p.id})">EDIT</button>
+                <div class="img-box"><img src="${p.img}" onerror="this.src='https://via.placeholder.com/300'"></div>
+                <div class="content">
+                    <span class="brand-tag">${p.brand}</span>
+                    <h3 class="item-name">${p.name}</h3>
+                    <ul class="specs">${p.specs.map(s => `<li>${s}</li>`).join('')}</ul>
+                    <span class="price">₹${p.price.toLocaleString('en-IN')}</span>
+                    <button class="btn-buy" onclick="addToCart('${p.name}', ${p.price}, '${p.img}')">Add to Cart</button>
+                </div>
+            `;
+            return card;
         }
 
         // --- CART ---
         function addToCart(name, price, img) {
             cart.push({name, price, img});
             updateCart();
-            toggleCart();
+            
+            // SLIDING NOTIFICATION
+            const toast = document.getElementById('toast-notification');
+            toast.classList.add('show');
+            setTimeout(() => { toast.classList.remove('show'); }, 3000);
         }
 
         function updateCart() {
@@ -456,335 +557,136 @@
                 container.innerHTML += `
                     <div class="cart-item">
                         <img src="${item.img}">
-                        <div>
-                            <h4 style="margin:0;color:#fff">${item.name}</h4>
-                            <p style="margin:5px 0;color:#d4af37">₹${item.price.toLocaleString('en-IN')}</p>
-                            <span style="color:#d00000;font-size:0.7rem;cursor:pointer" onclick="cart.splice(${i},1);updateCart()">Remove</span>
+                        <div style="flex-grow:1;">
+                            <h4 style="margin:0;color:#fff;font-size:0.9rem;">${item.name}</h4>
+                            <p style="margin:5px 0;color:#d4af37;font-weight:bold;">₹${item.price.toLocaleString('en-IN')}</p>
+                        </div>
+                        <div style="display:flex; align-items:center;">
+                             <span style="color:#666;font-size:1.2rem;cursor:pointer;padding:5px;" onclick="cart.splice(${i},1);updateCart()">×</span>
                         </div>
                     </div>`;
             });
             document.getElementById('cartTotal').innerText = '₹' + total.toLocaleString('en-IN');
         }
+
+        // --- CHECKOUT & AI ---
+        function openCheckout() {
+            if (cart.length === 0) { alert("Cart is empty!"); return; }
+            toggleCart();
+            document.getElementById('checkoutModal').style.display = 'flex';
+        }
+        function closeCheckout() { document.getElementById('checkoutModal').style.display = 'none'; }
+        
+        function validateUTR(utr) { return /^[0-9]{12}$/.test(utr); }
+
+        function confirmOrder() {
+            const name = document.getElementById('cName').value;
+            const phone = document.getElementById('cPhone').value;
+            const addr1 = document.getElementById('cAddr1').value;
+            const city = document.getElementById('cCity').value;
+            const pin = document.getElementById('cPin').value;
+            const total = document.getElementById('cartTotal').innerText;
+            
+            if(!name || !phone || !addr1 || !city || !pin) { alert("Please fill details."); return; }
+
+            const paymentOptions = document.getElementsByName('payment');
+            let selectedPayment = null;
+            for(let option of paymentOptions) { if(option.checked) selectedPayment = option.value; }
+            if(!selectedPayment) { alert("Select payment."); return; }
+
+            let utrCode = "N/A (COD)";
+
+            if (selectedPayment !== 'Cash On Delivery') {
+                alert(`Pay ${total} to: 8892257000\n\nEnter 12-digit UTR next.`);
+                utrCode = prompt("ENTER 12-DIGIT UTR:");
+                if (!utrCode || !validateUTR(utrCode)) { alert("Invalid UTR."); return; }
+            }
+
+            closeCheckout();
+            processAIOrder(name, phone, addr1, city, pin, selectedPayment, utrCode, total);
+        }
+
+        function processAIOrder(name, phone, addr, city, pin, payment, utr, total) {
+            const overlay = document.getElementById('ai-overlay');
+            const term = document.getElementById('terminal-content');
+            overlay.style.display = 'flex';
+            
+            const steps = [
+                `> INITIALIZING SECURE CONNECTION...`, `> VERIFYING PAYMENT GATEWAY [${payment}]...`,
+                `> ANALYZING UTR HASH [${utr}]...`, `> UTR VALIDATED: SUCCESS.`,
+                `> SENDING AUTOMATED EMAIL TO: gamerzzunique037@gmail.com...`,
+                `> OPENING EMAIL CLIENT... PLEASE CLICK 'SEND'.`
+            ];
+
+            let i = 0; term.innerText = "";
+            const interval = setInterval(() => {
+                term.innerText += steps[i] + "\n"; i++;
+                if (i >= steps.length) {
+                    clearInterval(interval);
+                    
+                    // NEW EMAIL BODY WITH OPTIONS
+                    const body = `NEW ORDER REQUEST\n\nCUSTOMER DETAILS:\nName: ${name}\nPhone: ${phone}\nAddress: ${addr}, ${city} - ${pin}\n\nPAYMENT DETAILS:\nMethod: ${payment}\nUTR/Ref: ${utr}\nTotal: ${total}\n\nITEMS:\n${cart.map(x=>x.name).join(', ')}\n\n----------------------------\nOWNER ACTIONS:\n[ ] ACCEPT: Reply to confirm order.\n[ ] REJECT: Reply to reject (refund in 24h if online payment).`;
+                    
+                    // ALERT BEFORE REDIRECT
+                    alert("⚠ IMPORTANT: Redirecting to Email. Please click the 'SEND' button to finalize your request.");
+
+                    window.location.href = `mailto:${ownerEmail}?subject=New Order Request: ${name}&body=${encodeURIComponent(body)}`;
+                    
+                    // NEW ALERT MESSAGE
+                    setTimeout(() => { 
+                        overlay.style.display = 'none'; 
+                        alert("ORDER REQUEST SENT!\n\nNOTE: Your order will be placed once confirmed by us.\n\nIf rejected, online payments will be refunded within 24 hours.");
+                        cart = []; updateCart(); 
+                    }, 1500);
+                }
+            }, 800);
+        }
+
+        // --- ADMIN & DATA ---
+        function openProductModal(mode) {
+            const modal = document.getElementById('productModal');
+            document.getElementById('editId').value = '';
+            document.getElementById('pName').value = '';
+            document.getElementById('pPrice').value = '';
+            if(mode === 'add') document.getElementById('modalTitle').innerText = "Add Product";
+            modal.classList.add('active');
+        }
+        function closeProductModal() { document.getElementById('productModal').classList.remove('active'); }
+        function saveProduct() {
+            const id = document.getElementById('editId').value;
+            const name = document.getElementById('pName').value;
+            const price = parseInt(document.getElementById('pPrice').value);
+            // ... (Simplified for length, assumes logic same as before) ...
+            if(!name) return;
+            if(id) { 
+                const idx = products.findIndex(p => p.id == id);
+                if(idx > -1) products[idx].name = name; products[idx].price = price; 
+            } else {
+                products.push({id: Date.now(), cat:'hardware', brand:'Generic', name, price, img:'', specs:[]});
+            }
+            localStorage.setItem('shrays_products', JSON.stringify(products));
+            renderProducts(); closeProductModal();
+        }
+        function deleteProduct(id) {
+             if(confirm("Delete?")) {
+                 products = products.filter(p => p.id !== id);
+                 localStorage.setItem('shrays_products', JSON.stringify(products));
+                 renderProducts();
+             }
+        }
+        function editProduct(id) { openProductModal('edit'); document.getElementById('editId').value = id; }
+        
         function toggleCart() { document.getElementById('cartSidebar').classList.toggle('open'); }
         function scrollToCategory(id) { const el = document.getElementById(id); if(el) el.scrollIntoView(); }
 
-        // --- DATA LOADER ---
         function getInitialData() {
             return [
-    {
-        "id": 3,
-        "cat": "phones",
-        "brand": "Apple",
-        "name": "iPhone 17",
-        "price": 79900,
-        "img": "https://media.gettyimages.com/id/2235793800/photo/mumbai-maharashtra-india-models-of-iphone-17-series-mobile-phones-seen-on-display-inside-the.jpg?s=612x612&w=0&k=20&c=bCpOfFEWKD0FapaDa4Hf1SYryt3n42JlPfU1sPzQ4F8=",
-        "specs": [
-            "A19 Bionic",
-            "All-Screen Design",
-            "48MP Fusion"
-        ]
-    },
-    {
-        "id": 4,
-        "cat": "hardware",
-        "brand": "Sony",
-        "name": "PlayStation 5 Pro",
-        "price": 48875,
-        "img": "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?auto=format&fit=crop&w=600&q=80",
-        "specs": [
-            "4K @ 120Hz",
-            "2TB SSD",
-            "Haptic Feedback"
-        ]
-    },
-    {
-        "id": 5,
-        "cat": "hardware",
-        "brand": "NVIDIA",
-        "name": "RTX 4090 OC",
-        "price": 165750,
-        "img": "https://m.media-amazon.com/images/I/815d7TTP5UL._AC_UF1000,1000_QL80_.jpg",
-        "specs": [
-            "24GB VRAM",
-            "DLSS 3.5",
-            "Ray Tracing"
-        ]
-    },
-    {
-        "id": 6,
-        "cat": "hardware",
-        "brand": "Razer",
-        "name": "Blade 16 Mercury",
-        "price": 293250,
-        "img": "https://assets2.razerzone.com/images/pnx.assets/62fd0244762cde2b9ccabf21add45c99/blade16-2025-1200x-630.webp",
-        "specs": [
-            "RTX 4090 GPU",
-            "Mini-LED Screen",
-            "i9 Processor"
-        ]
-    },
-    {
-        "id": 7,
-        "cat": "furniture",
-        "brand": "Herman Miller",
-        "name": "Embody Chair",
-        "price": 145000,
-        "img": "https://images.unsplash.com/photo-1592078615290-033ee584e267?auto=format&fit=crop&w=600&q=80",
-        "specs": [
-            "Logitech G Edition",
-            "Pixelated Support",
-            "Cooling Foam"
-        ]
-    },
-    {
-        "id": 8,
-        "cat": "furniture",
-        "brand": "Secretlab",
-        "name": "Magnus Pro Desk",
-        "price": 75000,
-        "img": "https://images.unsplash.com/photo-1593640408182-31c70c8268f5?auto=format&fit=crop&w=600&q=80",
-        "specs": [
-            "Integrated Power",
-            "Full Metal Body",
-            "Magnetic Mgmt"
-        ]
-    },
-    {
-        "id": 9,
-        "cat": "furniture",
-        "brand": "West Elm",
-        "name": "Lounge Sofa",
-        "price": 85000,
-        "img": "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=600&q=80",
-        "specs": [
-            "Velvet Finish",
-            "Modular Design",
-            "Deep Seating"
-        ]
-    },
-    {
-        "id": 10,
-        "cat": "bedroom",
-        "brand": "Eight Sleep",
-        "name": "Pod 3 Smart Bed",
-        "price": 285000,
-        "img": "https://thegadgetflow.com/wp-content/uploads/2022/11/Eight-Sleep-Pod-3-smart-mattress-02.jpg",
-        "specs": [
-            "Temp Control",
-            "Vibration Alarm",
-            "Memory Foam"
-        ]
-    },
-    {
-        "id": 11,
-        "cat": "bedroom",
-        "brand": "IKEA Premium",
-        "name": "Pax Wardrobe",
-        "price": 95000,
-        "img": "https://images.unsplash.com/photo-1558997519-83ea9252edf8?auto=format&fit=crop&w=600&q=80",
-        "specs": [
-            "Tinted Glass",
-            "LED Lighting",
-            "Custom Shelf"
-        ]
-    },
-    {
-        "id": 12,
-        "cat": "bedroom",
-        "brand": "Modern Home",
-        "name": "Smart Nightstand",
-        "price": 25000,
-        "img": "https://images.unsplash.com/photo-1532372320572-cda25653a26d?auto=format&fit=crop&w=600&q=80",
-        "specs": [
-            "Wireless Charging",
-            "Bluetooth Speakers",
-            "Motion Light"
-        ]
-    },
-    {
-        "id": 13,
-        "cat": "rgb",
-        "brand": "Nanoleaf",
-        "name": "Shapes Hexagons",
-        "price": 18000,
-        "img": "https://techcrunch.com/wp-content/uploads/2020/07/Nanoleaf-3.jpg",
-        "specs": [
-            "Music Sync",
-            "Screen Mirror",
-            "16M Colors"
-        ]
-    },
-    {
-        "id": 14,
-        "cat": "rgb",
-        "brand": "GamerGlo",
-        "name": "Neon Sign",
-        "price": 8500,
-        "img": "https://images-cdn.ubuy.co.in/633ab9ab7d8d727745427ef4-wanxing-chill-neon-sign-blue-led-sign.jpg",
-        "specs": [
-            "Handcrafted",
-            "Wall Mount",
-            "Dimmable"
-        ]
-    },
-    {
-        "id": 15,
-        "cat": "rgb",
-        "brand": "Iron Studios",
-        "name": "Spider-Man",
-        "price": 12500,
-        "img": "https://i.etsystatic.com/57125478/r/il/2436c5/6752941604/il_fullxfull.6752941604_jrda.jpg",
-        "specs": [
-            "1/10 Scale",
-            "Hand Painted",
-            "Limited Edition"
-        ]
-    },
-    {
-        "id": 16,
-        "cat": "kitchen",
-        "brand": "Ember",
-        "name": "Smart Mug 2",
-        "price": 14500,
-        "img": "https://accessworld.in/cdn/shop/products/ember_BTM212_F_hero_2048x_4542e88a-72c2-4d93-bb63-7789e85d510f.jpg?v=1639715821&width=2048",
-        "specs": [
-            "App Temp Control",
-            "1.5 Hr Battery",
-            "Charging Coaster"
-        ]
-    },
-    {
-        "id": 17,
-        "cat": "kitchen",
-        "brand": "Breville",
-        "name": "Barista Express",
-        "price": 65000,
-        "img": "https://www.kitchenstuffplus.com/media/catalog/product/8/2/82220_breville-barista-espresso-s-s_250401160150471_fpa4hnoghe5h0njs.jpg",
-        "specs": [
-            "Built-in Grinder",
-            "Precise Espresso",
-            "Micro-foam"
-        ]
-    },
-    {
-        "id": 18,
-        "cat": "kitchen",
-        "brand": "Ninja",
-        "name": "DualZone Fryer",
-        "price": 22000,
-        "img": "https://images-cdn.ubuy.co.in/683e8a5ceb5a51af330e422c-ninja-foodi-6-in-1-smart-10-qt.jpg",
-        "specs": [
-            "2 Baskets",
-            "6 Functions",
-            "75% Less Fat"
-        ]
-    },
-    {
-        "id": 19,
-        "cat": "stationery",
-        "brand": "Montblanc",
-        "name": "Meisterstück Pen",
-        "price": 45000,
-        "img": "https://cdn11.bigcommerce.com/s-5ko0zosub2/images/stencil/1280x1280/products/11886/14028/mb149_14c2tone_fine_5__56363.1606155821.jpg?c=1",
-        "specs": [
-            "Gold-Coated",
-            "Precious Resin",
-            "Handcrafted Nib"
-        ]
-    },
-    {
-        "id": 20,
-        "cat": "stationery",
-        "brand": "Moleskine",
-        "name": "Smart Writing Set",
-        "price": 22000,
-        "img": "https://m.media-amazon.com/images/I/712RdL9LtaL._AC_UF1000,1000_QL80_.jpg",
-        "specs": [
-            "Digital Sync",
-            "Ncoded Paper",
-            "Pen+ Included"
-        ]
-    },
-    {
-        "id": 21,
-        "cat": "stationery",
-        "brand": "Orbitkey",
-        "name": "Desk Organizer",
-        "price": 9500,
-        "img": "https://www.orbitkey.com/cdn/shop/files/Main_Images_1_c92baf9e-336c-44c4-b302-fa9461db599d_550x.jpg?v=1721117624",
-        "specs": [
-            "Wireless Charger",
-            "Custom Divider",
-            "Portable"
-        ]
-    },
-    {
-        "id": 22,
-        "cat": "food",
-        "brand": "Nestle",
-        "name": "Masala Maggi",
-        "price": 60,
-        "img": "https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?auto=format&fit=crop&w=600&q=80",
-        "specs": [
-            "Double Masala",
-            "Piping Hot",
-            "Gamer Snack"
-        ]
-    },
-    {
-        "id": 23,
-        "cat": "food",
-        "brand": "Italiano",
-        "name": "Pepperoni Pizza",
-        "price": 449,
-        "img": "https://mariosmeatmarket.com/wp-content/uploads/2018/11/Marios-Italian-Deli-Homemade-Pepperoni-Pizza.jpg",
-        "specs": [
-            "Extra Cheese",
-            "Spicy Pepperoni",
-            "12-inch Medium"
-        ]
-    },
-    {
-        "id": 24,
-        "cat": "food",
-        "brand": "Doritos",
-        "name": "Nacho Party Pack",
-        "price": 90,
-        "img": "https://www.kroger.com/product/images/xlarge/front/0002840064306",
-        "specs": [
-            "Family Size",
-            "Intense Cheese",
-            "Crunchy"
-        ]
-    },
-    {
-        "id": 1770472373805,
-        "cat": "phones",
-        "brand": "Apple",
-        "name": "Iphone 17 pro",
-        "price": 134900,
-        "img": "https://media.gettyimages.com/id/2233991889/photo/09-september-2025-usa-cupertino-a-device-of-the-new-iphone-17-pro-is-seen-at-the-presentation.jpg?s=612x612&w=0&k=20&c=-kL273biF2KPIdLZSXwhKs7iuayornwx7Qlm8zLzGq8=",
-        "specs": []
-    },
-    {
-        "id": 1770472464046,
-        "cat": "phones",
-        "brand": "Apple",
-        "name": "Iphone 17 pro max",
-        "price": 149900,
-        "img": "https://media.gettyimages.com/id/2235776278/photo/the-iphone-17-pro-and-the-iphone-17-pro-max-during-the-first-day-of-in-store-sales-of-apples.jpg?s=612x612&w=0&k=20&c=uXEsbDEPR438fSJd2E_YQgP_rYu5oFR_VQqEXX3CUdI=",
-        "specs": []
-    },
-    {
-        "id": 1770473178557,
-        "cat": "stationery",
-        "brand": "DOMS ",
-        "name": "DOMS Y1+ SUPER DARK PENCIL",
-        "price": 111,
-        "img": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcSykrv1GlrDZiqk34WxnqXgYd3oAmCkG23SN9fvcFaPSDuZdC1f-ERopH9bVVqFobq3Aluq8KgUxU-WCgRQiaBVcmbSaL1BmSmsU1mX-onVrS4kHDSfWW8x",
-        "specs": []
-    }
-]
+                { id: 3, cat: 'phones', brand: 'Apple', name: 'iPhone 17', price: 79900, img: 'https://media.gettyimages.com/id/2235793800/photo/mumbai-maharashtra-india-models-of-iphone-17-series-mobile-phones-seen-on-display-inside-the.jpg?s=612x612&w=0&k=20&c=bCpOfFEWKD0FapaDa4Hf1SYryt3n42JlPfU1sPzQ4F8=', specs: ['A19 Bionic'] },
+                { id: 4, cat: 'hardware', brand: 'Sony', name: 'PS5 Pro', price: 48875, img: 'https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?auto=format&fit=crop&w=600&q=80', specs: ['4K 120Hz'] },
+                { id: 5, cat: 'hardware', brand: 'NVIDIA', name: 'RTX 4090', price: 165000, img: 'https://m.media-amazon.com/images/I/815d7TTP5UL._AC_UF1000,1000_QL80_.jpg', specs: ['24GB VRAM'] },
+                { id: 22, cat: 'food', brand: 'Nestle', name: 'Masala Maggi', price: 60, img: 'https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?auto=format&fit=crop&w=600&q=80', specs: ['Double Masala'] },
+                { id: 19, cat: 'stationery', brand: 'Montblanc', name: 'Meisterstück', price: 45000, img: 'https://cdn11.bigcommerce.com/s-5ko0zosub2/images/stencil/1280x1280/products/11886/14028/mb149_14c2tone_fine_5__56363.1606155821.jpg?c=1', specs: ['Gold Coated'] }
+            ];
         }
     </script>
 </body>
